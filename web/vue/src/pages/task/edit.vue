@@ -409,7 +409,9 @@ export default {
   components: {taskSidebar},
   created () {
     const id = this.$route.params.id
-
+    if (id == undefined) {
+      return
+    }
     taskService.detail(id, (taskData, hosts) => {
       if (id && !taskData) {
         this.$message.error('数据不存在')
