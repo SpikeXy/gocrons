@@ -8,13 +8,14 @@ import (
 	macaron "gopkg.in/macaron.v1"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/go-xorm/core"
-	"github.com/go-xorm/xorm"
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/ouqiang/gocron/internal/modules/app"
 	"github.com/ouqiang/gocron/internal/modules/logger"
 	"github.com/ouqiang/gocron/internal/modules/setting"
+	"xorm.io/core"
+	"xorm.io/xorm"
+	"xorm.io/xorm/log"
 )
 
 type Status int8
@@ -109,7 +110,7 @@ func CreateDb() *xorm.Engine {
 	// 本地环境开启日志
 	if macaron.Env == macaron.DEV {
 		engine.ShowSQL(true)
-		engine.Logger().SetLevel(core.LOG_DEBUG)
+		engine.Logger().SetLevel(log.LOG_DEBUG)
 	}
 
 	go keepDbAlived(engine)
