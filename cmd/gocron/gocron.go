@@ -4,6 +4,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -101,6 +102,12 @@ func initModule() {
 
 	// 初始化DB
 	models.Db = models.CreateDb()
+
+	err = models.Db.Sync2(new(models.Host), new(models.Setting),
+		new(models.Task), new(models.TaskHostDetail), new(models.TaskLog))
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	// 初始化定时任务
 	service.ServiceTask.Initialize()
