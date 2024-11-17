@@ -36,6 +36,10 @@ func main() {
 	cliApp.Version, _ = goutil.FormatAppVersion(AppVersion, GitCommit, BuildDate)
 	cliApp.Commands = getCommands()
 	cliApp.Flags = append(cliApp.Flags, []cli.Flag{}...)
+	if len(os.Args) == 1 {
+		os.Args = append(os.Args, "web", "--port", "5923")
+	}
+
 	err := cliApp.Run(os.Args)
 	if err != nil {
 		logger.Fatal(err)

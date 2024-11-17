@@ -1,3 +1,4 @@
+//go:build windows
 // +build windows
 
 package utils
@@ -23,7 +24,7 @@ func ExecShell(ctx context.Context, command string) (string, error) {
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		HideWindow: true,
 	}
-	var resultChan chan Result = make(chan Result)
+	var resultChan chan Result = make(chan Result, 1)
 	go func() {
 		output, err := cmd.CombinedOutput()
 		resultChan <- Result{string(output), err}
