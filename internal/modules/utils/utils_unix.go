@@ -1,3 +1,4 @@
+//go:build !windows
 // +build !windows
 
 package utils
@@ -21,7 +22,7 @@ func ExecShell(ctx context.Context, command string) (string, error) {
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		Setpgid: true,
 	}
-	resultChan := make(chan Result)
+	resultChan := make(chan Result, 1)
 	go func() {
 		output, err := cmd.CombinedOutput()
 		resultChan <- Result{string(output), err}

@@ -289,10 +289,11 @@ export default {
       this.search()
     },
     search (callback = null) {
-      taskService.list(this.searchParams, (tasks, hosts) => {
-        this.tasks = tasks.data
-        this.taskTotal = tasks.total
-        this.hosts = hosts
+      taskService.get_tasks(this.searchParams, (data) => {
+        this.tasks = data.data
+        this.taskTotal = data.total
+        // this.hosts = hosts
+
         if (callback) {
           callback()
         }

@@ -18,9 +18,6 @@ export default {
     httpClient.batchGet([
       {
         uri: `/task/${id}`
-      },
-      {
-        uri: '/host/all'
       }
     ], callback)
   },
@@ -43,5 +40,8 @@ export default {
 
   run (id, callback) {
     httpClient.get(`/task/run/${id}`, {}, callback)
+  },
+  get_tasks (query, callback) {
+    httpClient.get(`/task`, query, callback)
   }
 }
