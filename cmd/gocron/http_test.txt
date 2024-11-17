@@ -1,0 +1,18 @@
+ Get 请求
+ https://postman-echo.com/get?foo1=bar1&foo2=bar2
+
+测试 POST 请求，暂时只能解析url当中的参数
+https://postman-echo.com/post
+
+测试shell命令1
+C:\Users\Think\Desktop\YuSheng\gocrons\cmd\gocron\test_script.bat
+内容为：
+@echo off
+echo This is a test script running on Windows.
+exit /b 0
+
+测试shell命令2：
+echo This is a direct command execution on Windows.
+
+5分钟
+5 * * * *
