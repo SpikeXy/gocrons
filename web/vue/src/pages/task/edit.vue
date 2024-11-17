@@ -409,7 +409,7 @@ export default {
   components: {taskSidebar},
   created () {
     const id = this.$route.params.id
-    if (id == undefined) {
+    if (id === undefined) {
       return
     }
     taskService.detail(id, (taskData, hosts) => {
